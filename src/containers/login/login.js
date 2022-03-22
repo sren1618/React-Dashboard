@@ -1,23 +1,32 @@
+import {connect} from 'react-redux';
 import './login.scss'
 import UserIcon from '../../assets/icons/person-circle.svg'
 import LockIcon from '../../assets/icons/file-lock2-fill.svg'
 import {useState} from 'react';
+import {createSaveUserInfo} from '../../redux/actions/loginAction'
+import {globalAlert} from '../../redux/actions/globalAlertAction'
+import {reqlogin} from '../../api';
 
-const Login = () => {
+const Login = (props) => {
   const [formData, setFormData] = useState({
-    userName: '',
+    username: '',
     password:''
   })
 
-  const handleFormSubmit = (event) =>{
+  const handleFormSubmit = async (event) =>{
+    const {username, password} = formData
     event.preventDefault()
-    console.log(formData)
+    const reqResult = await reqlogin(username, password)
+    if(reqResult.status === 1) props.globalAlert({show: true, msg:reqResult.msg})
+    console.log(reqResult)
+    // props.saveUserInfo(reqResult.data)
+    // console.log(reqResult.data)
   }
 
   const handelFormInputChange = (type) => (event) =>{
     switch (type){
       case 'username':
-        setFormData({...formData, userName: event.target.value })
+        setFormData({...formData, username: event.target.value })
         break
       case 'password':
         setFormData({...formData, password: event.target.value })
@@ -61,4 +70,12 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default connect(
+  state => ( {
+
+  }),
+  {
+    globalAlert,
+    saveUserInfo: createSaveUserInfo,
+  }
+)(Login);
