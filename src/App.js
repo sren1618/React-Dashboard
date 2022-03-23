@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, Navigate} from 'react-router-dom'
 import './App.css';
 import Login from './containers/login/login';
 import Admin from './containers/admin/admin';
@@ -9,7 +9,17 @@ const App = () => {
     <div >
       <Routes>
         <Route path='/' element={ <Login/> }/>
-        <Route path='/admin' element={ <Admin/> }/>
+        <Route path='/admin' element={ <Admin/> }>
+          <Route path='home' element={<Login/>}/>
+            <Route path='prod/category' element={<Login/>}/>
+              <Route path='prod/products' element={<Login/>}/>
+                <Route path='user' element={<Login/>}/>
+                  <Route path='role' element={<Login/>}/>
+
+
+        </Route>
+
+        <Route path='*' element={<Navigate to={'/'} />}/>
       </Routes>
       <GlobalAlert/>
     </div>

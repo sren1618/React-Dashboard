@@ -13,11 +13,8 @@ const instance = axios.create(
 // Add a request interceptor
 instance.interceptors.request.use(
   config => {
-    // 1). 将post/put请求的data对象数据转换为urlencode格式的字符串数据
-    const {data} = config
-    // const {token} = store.getState().userInfo
-    // console.log('atguigu_'+ token)
-    // if(token) config.headers.Authorization = 'atguigu_'+ token
+    const {token} = store.getState().userInfo
+    if(token) config.headers.Authorization = 'atguigu_'+ token
     return config;
   },
   error => {

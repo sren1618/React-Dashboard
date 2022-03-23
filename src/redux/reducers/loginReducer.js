@@ -20,6 +20,13 @@ export default (preState = initState, action) => {
         isLogin: true
       }
       return newState
+    case DELETE_USER_INFO:
+      newState = {
+        user: '',
+        token: '',
+        isLogin: false
+      }
+      return newState
     default:
       return preState
   }

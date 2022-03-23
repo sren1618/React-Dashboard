@@ -6,7 +6,6 @@ let initState = {
 }
 export default (preState = initState, action) => {
   const {type, data} = action
-  console.log(2)
   let newState
   switch (type){
     case GLOBAL_ALERT:

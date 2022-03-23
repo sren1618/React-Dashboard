@@ -1,25 +1,36 @@
 import {connect} from 'react-redux';
+import {useNavigate} from 'react-router-dom'
 import './login.scss'
 import UserIcon from '../../assets/icons/person-circle.svg'
 import LockIcon from '../../assets/icons/file-lock2-fill.svg'
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {createSaveUserInfo} from '../../redux/actions/loginAction'
 import {globalAlert} from '../../redux/actions/globalAlertAction'
 import {reqlogin} from '../../api';
 
 const Login = (props) => {
+  const {isLogin} = props.userInfo
+  console.log(props)
   const [formData, setFormData] = useState({
     username: '',
     password:''
   })
+  const navigate = useNavigate();
+  useEffect( () => {
+    if(isLogin){
+      navigate('/admin', {replace:true})
+    }
+  },[])
 
   const handleFormSubmit = async (event) =>{
     const {username, password} = formData
     event.preventDefault()
+    setFormData({ username: '', password:''} )
     const reqResult = await reqlogin(username, password)
     if(reqResult.status === 1) props.globalAlert({show: true, msg:reqResult.msg})
-    console.log(reqResult)
-    // props.saveUserInfo(reqResult.data)
+    // console.log(reqResult)
+    props.createSaveUserInfo(reqResult.data)
+    navigate('/admin', {replace: true})
     // console.log(reqResult.data)
   }
 
@@ -51,14 +62,14 @@ const Login = (props) => {
                   <img src={UserIcon} alt="Bootstrap" width="32" height="32"/>
                 </span>
                 <input type="text" className="form-control" placeholder="Username" aria-label="Username"
-                       aria-describedby="basic-addon1" onChange={handelFormInputChange('username')}/>
+                       aria-describedby="basic-addon1" onChange={handelFormInputChange('username')} value={formData.username}/>
               </div>
               <div className="input-group mb-3">
                 <span className="input-group-text" id="basic-addon1">
                   <img src={LockIcon} alt="Bootstrap" width="32" height="32"/>
                 </span>
                 <input type="text" className="form-control" placeholder="Password" aria-label="Password"
-                       aria-describedby="basic-addon1" onChange={handelFormInputChange('password')}/>
+                       aria-describedby="basic-addon1" onChange={handelFormInputChange('password')} value={formData.password}/>
               </div>
               <button type="submit" className="btn btn-primary submitButton">Submit</button>
             </form>
@@ -72,10 +83,10 @@ const Login = (props) => {
 
 export default connect(
   state => ( {
-
+    userInfo:state.userInfo
   }),
   {
     globalAlert,
-    saveUserInfo: createSaveUserInfo,
+    createSaveUserInfo,
   }
 )(Login);
