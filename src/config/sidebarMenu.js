@@ -1,53 +1,55 @@
 export default [
   {
     title: 'HOME',
-    collapse: false,
     key: 'home',
-    path: '/admin/home'
+    path: '/admin/home',
+    submenu: false
   },
   {
     title: 'PRODUCT',
     key: 'prod',
-    collapse: false,
+    path: '/admin/prod',
+    submenu: true,
     children: [
       {
         title: 'Categories',
         key: 'category',
-        path: '/admin/prod/category'
+        path: '/admin/prod/categories'
       },
       {
         title: 'Products',
         key: 'product',
-        path: '/admin/prod/product'
+        path: '/admin/prod/products'
       }
     ]
   },
   {
     title: 'USERS',
-    collapse: false,
     key: 'user',
-    path: '/admin/user'
+    path: '/admin/user',
+    submenu: false
   },
   {
     title: 'ROLES',
-    collapse: false,
     key: 'role',
-    path: '/admin/role'
+    path: '/admin/role',
+    submenu: false
   },
   {
     title: 'CHARTS',
     key: 'charts',
-    collapse: false,
+    path: '/admin/charts',
+    submenu: true,
     children: [
       {
-        title: 'dayReport',
+        title: '2',
         key: 'dayReport',
-        path: '/admin/charts/category'
+        path: '/admin/charts/1'
       },
       {
-        title: 'yearReport',
+        title: '3',
         key: 'yearReport',
-        path: '/admin/charts/product'
+        path: '/admin/charts/2'
       }
     ]
   }

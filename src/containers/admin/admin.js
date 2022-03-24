@@ -24,8 +24,11 @@ const Admin = (props) => {
       {props.userInfo.user.username}
       <button onClick={handelLogout}>log out</button>
       <Navigation/>
-      <Sidebar/>
-      <Outlet/>
+      <div style={{display:'flex'}}>
+        <Sidebar/>
+        <Outlet/>
+      </div>
+
     </div>
   );
 }

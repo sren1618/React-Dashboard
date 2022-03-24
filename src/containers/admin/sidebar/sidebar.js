@@ -1,19 +1,35 @@
-import { Link } from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 import  './sidebar.scss'
 import sidebarMenu from '../../../config/sidebarMenu';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
-
+let menuState = {}
 const Sidebar = () => {
 
-  let menuState = {}
-  sidebarMenu.map( (menu) => {    menuState[menu.key] = 'collapse'   })
+  let location = useLocation();
 
-  const [menu, setMenu] = useState(menuState)
+  const [menu, setMenu] = useState( () => {
+    console.log('state')
+    sidebarMenu.map( (menu) => { menuState[menu.key] = {
+      style:'collapse',
+      isSubmenu: menu.submenu
+    }})
+    const [subPath, path ] = location.pathname.split("/").reverse()
+    if(path !== 'admin'){
+      return {...menuState, [path]: {...menuState[path], style:'collapse show'} }
+    }else {
+      return {...menuState}
+    }
+  })
 
   const handleMenuClick = (item) => {
-    if(menu.hasOwnProperty(item)){
-      setMenu({...menuState, [item]: menu[item] ==='collapse'?'collapse show':'collapse'})
+    if(menu[item].isSubmenu){
+      console.log('e')
+      setMenu({
+        ...menuState,
+        [item]: menu[item].style ==='collapse'?{...menuState[item], style:'collapse show'}:{...menuState[item], style:'collapse'}})
+    }else{
+      setMenu(menuState)
     }
   }
 
@@ -31,11 +47,13 @@ const Sidebar = () => {
       }else{
         return (
           <div key={item.key} >
-            <button  className="btn btn-primary" type="button"
-                    onClick={() => {handleMenuClick(item.key)}}>
-              {item.title}
-            </button>
-            <div className={`submenu ${menu[item.key]}`} id={item.key}>
+            <Link to={item.path} >
+              <button className="btn btn-primary" type="button"
+                      onClick={() => {handleMenuClick(item.key)}}>
+                {item.title}
+              </button>
+            </Link>
+            <div className={`submenu ${menu[item.key]['style']}`} id={item.key}>
               { createSidebarMenu(item.children) }
             </div>
           </div>
