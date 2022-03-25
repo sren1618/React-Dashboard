@@ -9,7 +9,6 @@ const Sidebar = () => {
   let location = useLocation();
 
   const [menu, setMenu] = useState( () => {
-    console.log('state')
     sidebarMenu.map( (menu) => { menuState[menu.key] = {
       style:'collapse',
       isSubmenu: menu.submenu
@@ -23,13 +22,15 @@ const Sidebar = () => {
   })
 
   const handleMenuClick = (item) => {
-    if(menu[item].isSubmenu){
-      console.log('e')
-      setMenu({
-        ...menuState,
-        [item]: menu[item].style ==='collapse'?{...menuState[item], style:'collapse show'}:{...menuState[item], style:'collapse'}})
-    }else{
-      setMenu(menuState)
+    if(menu.hasOwnProperty(item)){
+      if(menu[item].isSubmenu){
+        console.log('e')
+        setMenu({
+          ...menuState,
+          [item]: menu[item].style ==='collapse'?{...menuState[item], style:'collapse show'}:{...menuState[item], style:'collapse'}})
+      }else{
+        setMenu(menuState)
+      }
     }
   }
 
