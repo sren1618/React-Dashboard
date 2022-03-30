@@ -2,7 +2,6 @@ import {connect} from 'react-redux';
 import {useEffect, useState} from 'react';
 import { reqCategories, reqAddCategory, reqUpdateCategory } from '../../api'
 import './categories.scss'
-import {useNavigate} from 'react-router-dom';
 import {globalAlert} from '../../redux/actions/globalAlertAction';
 
 const Categories = (props) => {
