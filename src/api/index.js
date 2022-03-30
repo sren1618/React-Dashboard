@@ -8,3 +8,7 @@ export const reqlogin = (username, password) =>{
 export const reqCategories = () => {
    return myAxios.get( `${BASE_URL}/manage/category/list`)
 }
+
+export const reqAddCategory = (categoryName) => ( myAxios.post(`${BASE_URL}/manage/category/add`, {categoryName}))
+
+export const reqUpdateCategory = (categoryId, categoryName) => (myAxios.post(`${BASE_URL}/manage/category/update`, {categoryId,categoryName}))

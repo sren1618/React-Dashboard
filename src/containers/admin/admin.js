@@ -28,7 +28,6 @@ const Admin = (props) => {
         <Sidebar/>
         <Outlet/>
       </div>
-
     </div>
   );
 }

@@ -24,7 +24,6 @@ const Sidebar = () => {
   const handleMenuClick = (item) => {
     if(menu.hasOwnProperty(item)){
       if(menu[item].isSubmenu){
-        console.log('e')
         setMenu({
           ...menuState,
           [item]: menu[item].style ==='collapse'?{...menuState[item], style:'collapse show'}:{...menuState[item], style:'collapse'}})
@@ -48,12 +47,10 @@ const Sidebar = () => {
       }else{
         return (
           <div key={item.key} >
-            <Link to={item.path} >
-              <button className="btn btn-primary" type="button"
-                      onClick={() => {handleMenuClick(item.key)}}>
-                {item.title}
-              </button>
-            </Link>
+            <button className="btn btn-primary" type="button"
+                    onClick={() => {handleMenuClick(item.key)}}>
+              {item.title}
+            </button>
             <div className={`submenu ${menu[item.key]['style']}`} id={item.key}>
               { createSidebarMenu(item.children) }
             </div>

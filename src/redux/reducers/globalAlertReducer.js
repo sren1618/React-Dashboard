@@ -9,7 +9,6 @@ export default (preState = initState, action) => {
   let newState
   switch (type){
     case GLOBAL_ALERT:
-      console.log(data)
       newState = {
         show: data.show,
         msg: data.msg

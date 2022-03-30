@@ -1,10 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import './globalAlert.scss'
 import { globalAlert} from '../../redux/actions/globalAlertAction'
 
 const GlobalAlert = (props) => {
   const {show, msg} = props.alertInfo
+  useEffect( () => {
+    const timer = setTimeout(() => {
+      props.globalAlert({show: false, msg:""})
+    }, 2000)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [show])
+
   const handelAlertClose = () => {
     props.globalAlert({show: false, msg:""})
   }
