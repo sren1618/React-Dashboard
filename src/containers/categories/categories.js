@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import { reqCategories, reqAddCategory, reqUpdateCategory } from '../../api'
 import './categories.scss'
 import {globalAlert} from '../../redux/actions/globalAlertAction';
+import {createSaveCategories} from '../../redux/actions/categoryAction';
 
 const Categories = (props) => {
 
@@ -33,12 +34,14 @@ const Categories = (props) => {
 
 
   const fetchTableData = async (pageNumber) => {
-    const categories = await reqCategories()
-    let totalPages = Math.ceil(categories.data.length / pageNumber)
+    const result = await reqCategories()
+    props.saveCategories(result)
+    const categories = result.data.reverse()
+    let totalPages = Math.ceil(categories.length / pageNumber)
     let start = 0
     const data = []
     for (let i = 0; i< totalPages;i++ ){
-      data.push(categories.data.slice(start, pageNumber+start))
+      data.push(categories.slice(start, pageNumber+start))
       start = start + pageNumber
     }
     setTableDate(data)
@@ -184,5 +187,6 @@ export default connect(
   state => ({}),
   {
     globalAlert,
+    saveCategories: createSaveCategories
   }
 )(Categories);

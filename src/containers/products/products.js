@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {reqProductList, reqSearchProds, reqUpdateProdsStatus} from '../../api'
 import {globalAlert} from '../../redux/actions/globalAlertAction';
 import './products.scss'
+import {Link} from 'react-router-dom';
+import {createSaveProducts} from '../../redux/actions/productAction';
 
 const Products = (props) => {
   const [products, setProducts] =useState([])
@@ -21,10 +23,12 @@ const Products = (props) => {
 
   const fetchProductsList = async (pageNum, pageSize) => {
     let result = await reqProductList(pageNum, pageSize)
-    const {status, data, msg} = result
+    const {status, data} = result
+    console.log(result)
     if(status === 0){
       setProducts(data.list)
       setTablePagination({totalPages:data.total, currentPage: data.pages})
+      props.saveProducts(data.list)
     }
   }
 
@@ -65,7 +69,7 @@ const Products = (props) => {
       result = await reqSearchProds(undefined,searchContent, 1, 5 )
     }
     setProducts(result.data.list)
-    console.log(result)
+
   }
 
   return (
@@ -83,7 +87,9 @@ const Products = (props) => {
                onChange={ (event) => {setTableHeader({...tableHeader,searchContent: event.target.value})}}/>
             <button className="btn btn-outline-success" type="submit" onClick={ (event) => {handleSearchClicked(event)}}>Search</button>
           </form>
-          <button className=' btn btn-primary' data-bs-toggle="modal" data-bs-target="#staticBackdrop" >+ Add new product</button>
+          <Link to={'/admin/prod/products/details'}>
+          <button className=' btn btn-primary' >+ Add new product</button>
+          </Link>
         </div>
         <div className="card-body">
           <table className="table table-striped">
@@ -103,7 +109,6 @@ const Products = (props) => {
                 <tr key={product._id}>
                   <th scope="row">{index+1}</th>
                   <td>{product.name}</td>
-                  {/*<td dangerouslySetInnerHTML={{__html: product.detail}}></td>*/}
                   <td>{product.desc}</td>
                   <td>{product.price}</td>
                   <td>
@@ -112,8 +117,12 @@ const Products = (props) => {
                       onClick={() => {handleProductState(product)}}
                     >{product.status ===1 ? 'Listed': 'Not Listed'}</button></td>
                   <td>
-                    <button className=' btn' data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Details</button>
-                    <button className=' btn' data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Edit</button>
+                    <Link to={`/admin/prod/products/details/${product._id}`}>
+                      <button className=' btn' >Details</button>
+                    </Link>
+                    <Link to={'/admin/prod/products/update'}>
+                      <button className=' btn' >Edit</button>
+                    </Link>
                   </td>
                 </tr>
               )
@@ -137,6 +146,7 @@ const Products = (props) => {
 export default connect(
   state => ({}),
   {
-    globalAlert
+    globalAlert,
+    saveProducts: createSaveProducts
   }
 )(Products);

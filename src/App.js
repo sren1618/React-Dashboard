@@ -5,6 +5,8 @@ import Admin from './containers/admin/admin';
 import GlobalAlert from './containers/globalAlert/globalAlert';
 import Products from './containers/products/products';
 import Categories from './containers/categories/categories';
+import Details from './containers/products/details/details';
+import Update from './containers/products/update/update'
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
           <Route path='home' element={<Products/>}/>
           <Route path='prod/categories' element={<Categories/>}/>
           <Route path='prod/products' element={<Products/>}/>
+          <Route path='prod/products/details/:id' element={<Details/>}/>
+          <Route path='prod/products/update' element={<Update/>}/>
           <Route path='user' element={<Products/>}/>
           <Route path='role' element={<Products/>}/>
           <Route path='charts/1' element={<Products/>}/>

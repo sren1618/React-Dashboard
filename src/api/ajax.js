@@ -28,7 +28,7 @@ instance.interceptors.response.use(
     return response.data
   },
   error => {
-    store.dispatch(globalAlert({show:true, msg:'Please log in'}))
+    store.dispatch(globalAlert({show:true, msg:error.message}))
   }
 );
 
