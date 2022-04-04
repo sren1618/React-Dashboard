@@ -111,7 +111,6 @@ const Categories = (props) => {
           fetchTableData(5)
         }
       }else if (type === 'edit'){
-        console.log(id)
         let result = await reqUpdateCategory(id, data)
         props.globalAlert({show:true, msg:'Edited successfully!'})
         fetchTableData(5)

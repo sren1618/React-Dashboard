@@ -24,7 +24,6 @@ const Products = (props) => {
   const fetchProductsList = async (pageNum, pageSize) => {
     let result = await reqProductList(pageNum, pageSize)
     const {status, data} = result
-    console.log(result)
     if(status === 0){
       setProducts(data.list)
       setTablePagination({totalPages:data.total, currentPage: data.pages})
@@ -87,7 +86,7 @@ const Products = (props) => {
                onChange={ (event) => {setTableHeader({...tableHeader,searchContent: event.target.value})}}/>
             <button className="btn btn-outline-success" type="submit" onClick={ (event) => {handleSearchClicked(event)}}>Search</button>
           </form>
-          <Link to={'/admin/prod/products/details'}>
+          <Link to={'/admin/prod/products/add-update'}>
           <button className=' btn btn-primary' >+ Add new product</button>
           </Link>
         </div>
@@ -120,7 +119,7 @@ const Products = (props) => {
                     <Link to={`/admin/prod/products/details/${product._id}`}>
                       <button className=' btn' >Details</button>
                     </Link>
-                    <Link to={'/admin/prod/products/update'}>
+                    <Link to={`/admin/prod/products/add-update/${product._id}`}>
                       <button className=' btn' >Edit</button>
                     </Link>
                   </td>

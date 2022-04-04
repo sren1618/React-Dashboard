@@ -7,7 +7,6 @@ const Details = (props) => {
 
   const params = useParams()
   const navigate = useNavigate()
-
   const [product, setProduct] = useState({
     categoryId:'',
     categoryName:'',
@@ -21,8 +20,6 @@ const Details = (props) => {
   useEffect(() => {
     fetchProductDetail()
   },[])
-
-
 
   const fetchProductDetail = async () => {
     const productList = props.productList
@@ -41,23 +38,16 @@ const Details = (props) => {
       categoryDetail = categoryList.find( (category) => category._id === productDetail.categoryId)
     }else{
       let result = await reqCategories()
-      categoryDetail = result.data
+      categoryDetail = result.data.find( (category) => category._id === productDetail.categoryId)
     }
-
-
     setProduct({...productDetail, categoryName:categoryDetail.name})
   }
 
-
-
   return (
     <div>
-      Details
-      {console.log(product)}
       <div className="card">
         <div className="card-header">
           <button className="btn btn-primary" type="button" onClick={() => {navigate(-1)}}>GO Back</button>
-          Featured
         </div>
         <div className="card-body">
           <div className="input-group input-group-sm mb-3">
