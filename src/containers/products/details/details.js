@@ -33,7 +33,6 @@ const Details = (props) => {
       let result = await reqProductInfo(params.id)
       productDetail = result.data
     }
-
     if(categoryList){
       categoryDetail = categoryList.find( (category) => category._id === productDetail.categoryId)
     }else{

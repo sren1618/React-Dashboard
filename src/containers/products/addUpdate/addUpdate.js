@@ -88,10 +88,7 @@ const AddUpdate = (props) => {
     productItem.desc = event.target.description.value
     if( uploadedImage.files) productItem.imgs = [uploadedImage.name]
     else productItem.imgs = product.imgs[0]
-
     product.detail = richTextRef.current.getRichText()
-    console.log(productItem)
-
 
     let result
     if(actionType === 'add') result = await reqAddProduct(productItem)
@@ -131,7 +128,8 @@ const AddUpdate = (props) => {
               </div>
               <div className=" mb-3">
                 <span className="input-group-text" id="inputGroup-sizing-sm">Category</span>
-                <select className="form-select" name='category' value={product.categoryId} onChange={() => {}}>
+                <select className="form-select" name='category' value={product.categoryId}
+                        onChange={(event) => {setProduct({...product, categoryId:event.target.value})}}>
                   {
                     categoryList.map( (category) => {
                       return <option key={category._id} value={category._id} name={category.name}>{category.name}</option>
