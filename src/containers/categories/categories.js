@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { reqCategories, reqAddCategory, reqUpdateCategory } from '../../api'
-import './categories.scss'
 import {globalAlert} from '../../redux/actions/globalAlertAction';
 import {createSaveCategories} from '../../redux/actions/categoryAction';
 
@@ -128,7 +127,8 @@ const Categories = (props) => {
     <>
     <div className="card">
       <div className="card-header">
-        <button className=' btn btn-primary' data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={ () => handleCategoryModal()}>+ ADD</button>
+        <h2>Categories</h2>
+        <button className=' btn btn-primary' data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={ () => handleCategoryModal()}>+ Add New Category</button>
       </div>
       <div className="card-body">
         <table className="table table-striped">
@@ -152,14 +152,14 @@ const Categories = (props) => {
           </tbody>
         </table>
       </div>
-      <nav aria-label="Page navigation" className=' navbar card-footer'>
+      <div aria-label="Page navigation" className=' card-footer'>
         <h4 className="page-item">Page : { showTable.currentPage}</h4>
         <ul className="pagination">
           <li className="page-item"><button className=' btn btn-primary ' disabled= {showTable.pre} onClick={() => handlePagination('pre')}>Previous</button></li>
           {CreatePagination()}
           <li className="page-item"><button className=' btn btn-primary' onClick={() => handlePagination('next')}>Next</button></li>
         </ul>
-      </nav>
+      </div>
     </div>
     {/*modal*/}
     <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

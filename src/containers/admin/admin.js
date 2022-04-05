@@ -2,7 +2,6 @@ import {connect} from 'react-redux';
 import {Outlet} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
 import {useEffect} from 'react';
-import {deleteUserInfo} from '../../redux/actions/loginAction';
 import Sidebar from './sidebar/sidebar';
 import Navigation from './navigation/navigation';
 
@@ -16,16 +15,12 @@ const Admin = (props) => {
     }
   }, [isLogin])
 
-  const handelLogout = () =>{
-    props.deleteUserInfo()
-  }
+
   return (
-    <div>
-      {props.userInfo.user.username}
-      <button onClick={handelLogout}>log out</button>
-      <Navigation/>
-      <div style={{display:'flex'}}>
-        <Sidebar/>
+    <div style={{display: 'flex'}}>
+      <Sidebar/>
+      <div style={{width: '100%'}}>
+        <Navigation/>
         <Outlet/>
       </div>
     </div>
@@ -35,8 +30,5 @@ const Admin = (props) => {
 export default connect(
   state => ({
     userInfo: state.userInfo
-  }),
-  {
-    deleteUserInfo
-  }
+  })
 )(Admin);

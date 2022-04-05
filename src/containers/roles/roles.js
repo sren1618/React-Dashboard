@@ -68,6 +68,7 @@ const Roles = (props) => {
     <>
       <div className="card">
         <div className="card-header">
+          <h2>Roles</h2>
           <button className=' btn btn-primary' data-bs-toggle="modal" data-bs-target="#staticBackdrop1" >+ ADD</button>
         </div>
         <div className="card-body">

@@ -75,6 +75,7 @@ const Products = (props) => {
     <div className="product-card">
       <div className="card">
         <div className="card-header">
+          <h2>Products</h2>
           <form className="d-flex">
             <select className="form-select"
               onChange={ (event) => {setTableHeader({...tableHeader,searchType: event.target.value})}}
@@ -109,7 +110,7 @@ const Products = (props) => {
                   <th scope="row">{index+1}</th>
                   <td>{product.name}</td>
                   <td>{product.desc}</td>
-                  <td>{product.price}</td>
+                  <td>AUD {product.price}</td>
                   <td>
                     <button
                       className={product.status ===1? "btn btn-success":"btn btn-danger"}
@@ -129,14 +130,14 @@ const Products = (props) => {
             </tbody>
           </table>
         </div>
-        <nav aria-label="Page navigation" className=' navbar card-footer'>
+        <div aria-label="Page navigation" className='  card-footer'>
           <h4 className="page-item">Page : { tablePagination.currentPage}</h4>
           <ul className="pagination">
             <li className="page-item"><button className=' btn btn-primary '  onClick={() => handlePagination('pre')}>Previous</button></li>
             {CreatePagination()}
             <li className="page-item"><button className=' btn btn-primary' onClick={() => handlePagination('next')}>Next</button></li>
           </ul>
-        </nav>
+        </div>
       </div>
     </div>
   );

@@ -13,13 +13,11 @@ const Users = (props) => {
   const fetchUsersList =  async () => {
     let result = await reqUsersList()
     setUsersList(result.data.users)
-    console.log(result)
   }
 
   const handleEditUser = (id) => {}
 
   const handleDeleteUser = async(id) => {
-    console.log(id)
     let result = await reqDeleteUser(id)
     if  (result.status === 0){
       fetchUsersList()
@@ -33,6 +31,7 @@ const Users = (props) => {
     <>
       <div className="card">
         <div className="card-header">
+          <h2>Users</h2>
           <button className=' btn btn-primary' data-bs-toggle="modal" data-bs-target="#staticBackdrop1" >+ ADD</button>
         </div>
         <div className="card-body">

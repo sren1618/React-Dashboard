@@ -1,16 +1,30 @@
+import {connect} from 'react-redux';
+import {deleteUserInfo} from '../../../redux/actions/loginAction';
+import './navigation.scss'
 
+const Navigation = (props) => {
 
-const Navigation = () => {
+  const handelLogout = () =>{
+    props.deleteUserInfo()
+  }
   return (
-    <div>
-      <nav className="navbar navbar-dark" style={{backgroundColor:'#e3f2fd'}}>
-        <div className="container-fluid">
-          <h1>XXX Mangement system</h1>
-        </div>
-        <p>wellcome!</p>
-      </nav>
-    </div>
+    <nav className="navbar" >
+      <div className="container-fluid">
+        <h1>XXX Mangement system</h1>
+        <p>wellcome! {props.userInfo.user.username}</p>
+        <button className=' btn' onClick={handelLogout}>log out</button>
+      </div>
+    </nav>
   );
 }
 
-export default Navigation;
+export default connect(
+  state => ({
+    userInfo: state.userInfo
+  }),
+  {
+    deleteUserInfo
+  }
+)(Navigation);
+
+

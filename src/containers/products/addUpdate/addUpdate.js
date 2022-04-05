@@ -102,58 +102,54 @@ const AddUpdate = (props) => {
   }
 
   return (
-    <div>
-      <div>
-        <div className="card">
-          <div className="card-header">
-            <h1>{actionType} Product</h1>
-            <button className="btn btn-primary" type="button" onClick={() => {navigate(-1)}}>GO Back</button>
-          </div>
-          <div className="card-body">
-            <form onSubmit={ (event) => {handleFormSubmit(event)}}>
-              <div className=" mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-sm" >Title</span>
-                <input type="text" name='title' className="form-control" aria-label="Sizing example input" defaultValue={product.name}
-                       aria-describedby="inputGroup-sizing-sm"/>
-              </div>
-              <div className=" mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-sm">Description</span>
-                <input type="text" name='description' className="form-control" aria-label="Sizing example input" defaultValue={product.desc}
-                       aria-describedby="inputGroup-sizing-sm"/>
-              </div>
-              <div className=" mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-sm">Price</span>
-                <input type="text" name='price' className="form-control" aria-label="Sizing example input" defaultValue={product.price}
-                       aria-describedby="inputGroup-sizing-sm"/>
-              </div>
-              <div className=" mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-sm">Category</span>
-                <select className="form-select" name='category' value={product.categoryId}
-                        onChange={(event) => {setProduct({...product, categoryId:event.target.value})}}>
-                  {
-                    categoryList.map( (category) => {
-                      return <option key={category._id} value={category._id} name={category.name}>{category.name}</option>
-                    })
-                  }
-                </select>
-              </div>
-              <div className="mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-sm">Picture</span>
-                <input className="form-control" name='picture' type="file" id="formFile" ref={imgInputRef}
-                       onChange={ (event) => {handelUploadImage(event)}}/>
-                <img src={uploadedImage.path} alt="" />
-                <button type='button' onClick={handleDeleteUploadedImage}>Delete</button>
-              </div>
-              <div className="mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-sm">details</span>
-                <EditorConvertToHTML ref={richTextRef}/>
-              </div>
-              <input type="submit"/>
-            </form>
-          </div>
+    <div className="card">
+        <div className="card-header">
+          <h2>{actionType} Product</h2>
+          <button className="btn btn-primary" type="button" onClick={() => {navigate(-1)}}>GO Back</button>
+        </div>
+        <div className="card-body">
+          <form onSubmit={ (event) => {handleFormSubmit(event)}}>
+            <div className=" mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-sm" >Title</span>
+              <input type="text" name='title' className="form-control" aria-label="Sizing example input" defaultValue={product.name}
+                     aria-describedby="inputGroup-sizing-sm"/>
+            </div>
+            <div className=" mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-sm">Description</span>
+              <input type="text" name='description' className="form-control" aria-label="Sizing example input" defaultValue={product.desc}
+                     aria-describedby="inputGroup-sizing-sm"/>
+            </div>
+            <div className=" mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-sm">Price</span>
+              <input type="text" name='price' className="form-control" aria-label="Sizing example input" defaultValue={product.price}
+                     aria-describedby="inputGroup-sizing-sm"/>
+            </div>
+            <div className=" mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-sm">Category</span>
+              <select className="form-select" name='category' value={product.categoryId}
+                      onChange={(event) => {setProduct({...product, categoryId:event.target.value})}}>
+                {
+                  categoryList.map( (category) => {
+                    return <option key={category._id} value={category._id} name={category.name}>{category.name}</option>
+                  })
+                }
+              </select>
+            </div>
+            <div className="mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-sm">Picture</span>
+              <input className="form-control" name='picture' type="file" id="formFile" ref={imgInputRef}
+                     onChange={ (event) => {handelUploadImage(event)}}/>
+              <img src={uploadedImage.path} alt="" />
+              <button type='button' onClick={handleDeleteUploadedImage}>Delete</button>
+            </div>
+            <div className="mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-sm">details</span>
+              <EditorConvertToHTML ref={richTextRef}/>
+            </div>
+            <input type="submit"/>
+          </form>
         </div>
       </div>
-    </div>
   );
 }
 
