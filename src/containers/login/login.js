@@ -10,7 +10,6 @@ import {reqlogin} from '../../api';
 
 const Login = (props) => {
   const {isLogin} = props.userInfo
-  console.log(props)
   const [formData, setFormData] = useState({
     username: '',
     password:''
@@ -30,7 +29,7 @@ const Login = (props) => {
     if(reqResult.status === 1) props.globalAlert({show: true, msg:reqResult.msg})
     // console.log(reqResult)
     props.createSaveUserInfo(reqResult.data)
-    navigate('/admin', {replace: true})
+    navigate('/admin/home', {replace: true})
     // console.log(reqResult.data)
   }
 

@@ -169,7 +169,7 @@ const Categories = (props) => {
           <h5 className="modal-title" id="staticBackdropLabel">{modalData.title}</h5>
         </div>
         <div className="modal-body">
-          <input type="email" className="form-control" id="exampleFormControlInput1" value={modalData.data} placeholder={modalData.placeholder} onChange={ (e) => {handleModalInputChange(e)}}/>
+          <input type="text" className="form-control" id="exampleFormControlInput1" value={modalData.data} placeholder={modalData.placeholder} onChange={ (e) => {handleModalInputChange(e)}}/>
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={handleCloseModal}>Close</button>

@@ -6,7 +6,7 @@ export default [
     submenu: false
   },
   {
-    title: 'PRODUCT',
+    title: 'PRODUCTS',
     key: 'prod',
     path: '/admin/prod',
     submenu: true,

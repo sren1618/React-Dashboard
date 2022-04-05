@@ -9,6 +9,7 @@ const Sidebar = () => {
   let location = useLocation();
 
   const [menu, setMenu] = useState( () => {
+    console.log(sidebarMenu)
     sidebarMenu.map( (menu) => { menuState[menu.key] = {
       style:'collapse',
       isSubmenu: menu.submenu

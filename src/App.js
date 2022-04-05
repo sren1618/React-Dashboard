@@ -7,6 +7,8 @@ import Products from './containers/products/products';
 import Categories from './containers/categories/categories';
 import Details from './containers/products/details/details';
 import AddUpdate from './containers/products/addUpdate/addUpdate';
+import Roles from './containers/roles/roles';
+import Users from './containers/users/users';
 
 const App = () => {
   return (
@@ -20,8 +22,8 @@ const App = () => {
           <Route path='prod/products/details/:id' element={<Details/>}/>
           <Route path='prod/products/add-update' element={<AddUpdate/>}/>
           <Route path='prod/products/add-update/:id' element={<AddUpdate/>}/>
-          <Route path='user' element={<Products/>}/>
-          <Route path='role' element={<Products/>}/>
+          <Route path='user' element={<Users/>}/>
+          <Route path='role' element={<Roles/>}/>
           <Route path='charts/1' element={<Products/>}/>
           <Route path='charts/2' element={<Products/>}/>
         </Route>

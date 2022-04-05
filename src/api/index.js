@@ -42,3 +42,21 @@ export const reqAddProduct =  (product) =>  (
 
 export const reqUpdateProduct =  (product) =>  (
   myAxios.post(`${BASE_URL}/manage/product/update`, product))
+
+export const reqRolesList = () => (
+  myAxios.get( `${BASE_URL}/manage/role/list`))
+
+export const reqAddRole = (roleName) => (
+  myAxios.post(`${BASE_URL}/manage/role/add`, {roleName}))
+
+export const reqUpdateRolePermissions = (role) =>  (
+  myAxios.post(`${BASE_URL}/manage/role/update`, role))
+
+export const reqUsersList = () => (
+  myAxios.get( `${BASE_URL}/manage/user/list`))
+
+export const reqDeleteUser = (userId) => (
+  myAxios.post('/manage/user/delete', {userId}))
+
+export const reqAddOrUpdateUser = (user) => (
+  myAxios.post('/manage/user/'+(user._id ? 'update' : 'add'), user))
