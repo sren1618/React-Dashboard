@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {connect} from 'react-redux';
 import {useNavigate, useParams} from 'react-router-dom';
-import EditorConvertToHTML from '../../../components/richTextEditor'
+import EditorConvertToHTML from '../../../components/richTextEditor/richTextEditor'
 import {reqCategories, reqUploadImage, reqDeleteImage, reqAddProduct, reqProductInfo, reqUpdateProduct} from '../../../api';
 import {globalAlert} from '../../../redux/actions/globalAlertAction';
 import {BASE_URL} from '../../../config';
@@ -88,8 +88,7 @@ const AddUpdate = (props) => {
     productItem.desc = event.target.description.value
     if( uploadedImage.files) productItem.imgs = [uploadedImage.name]
     else productItem.imgs = product.imgs[0]
-    product.detail = richTextRef.current.getRichText()
-
+    productItem.detail = richTextRef.current.getRichText()
     let result
     if(actionType === 'add') result = await reqAddProduct(productItem)
     else  result = await reqUpdateProduct(productItem)

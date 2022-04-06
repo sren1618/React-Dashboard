@@ -22,6 +22,7 @@ const Roles = (props) => {
 
   const fetchRolesList =  async () => {
     let result = await reqRolesList()
+    console.log(result.data)
     setRolesList(result.data)
   }
 
@@ -42,15 +43,17 @@ const Roles = (props) => {
   }
 
   const handleCheckbox = (event, type) => {
-
     setCheckboxMenu({...checkboxMenu, [type]:event.target.checked})
   }
+
   const  handleSettingRolePermissions = async () => {
     let role = {}
     let menus = []
     for (const menu in checkboxMenu){
       if (checkboxMenu[menu] !== false) menus.push(menu)
     }
+    if (checkboxMenu.prod === true) menus.push('category','product')
+    if (checkboxMenu.charts === true) menus.push('dayReport','yearReport')
     role._id = modifiedRole
     role.auth_name = props.userInfo.user.username
     role.menus = menus

@@ -9,6 +9,7 @@ import Details from './containers/products/details/details';
 import AddUpdate from './containers/products/addUpdate/addUpdate';
 import Roles from './containers/roles/roles';
 import Users from './containers/users/users';
+import Home from './components/home/home';
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={ <Login/> }/>
         <Route path='/admin' element={ <Admin/> }>
-          <Route path='home' element={<Products/>}/>
+          <Route path='home' element={<Home/>}/>
           <Route path='prod/categories' element={<Categories/>}/>
           <Route path='prod/products' element={<Products/>}/>
           <Route path='prod/products/details/:id' element={<Details/>}/>

@@ -25,13 +25,13 @@ export default [
   },
   {
     title: 'USERS',
-    key: 'user',
+    key: 'users',
     path: '/admin/user',
     submenu: false
   },
   {
     title: 'ROLES',
-    key: 'role',
+    key: 'roles',
     path: '/admin/role',
     submenu: false
   },

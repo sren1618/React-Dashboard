@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {useNavigate, useParams} from 'react-router-dom';
 import {reqCategories, reqProductInfo} from '../../../api';
+import './details.scss'
 
 const Details = (props) => {
 
@@ -49,23 +50,23 @@ const Details = (props) => {
       </div>
       <div className="card-body">
         <div className="input-group input-group-sm mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-sm">Title</span>
-          <span>{product.name}</span>
+          <span className='title'>Title:</span>
+          <div className=' content'>{product.name}</div>
         </div>
         <div className="input-group input-group-sm mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-sm">Description</span>
-          <span>{product.desc}</span>
+          <span className='title'>Description:</span>
+          <div className=' content'>{product.desc}</div>
         </div>
         <div className="input-group input-group-sm mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-sm">Price</span>
-          <span>{product.price}</span>
+          <span className='title'>Price:</span>
+          <div className=' content'>{product.price}</div>
         </div>
         <div className="input-group input-group-sm mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-sm">Category</span>
-          <span>{product.categoryName}</span>
+          <span className='title'>Category:</span>
+          <div className=' content'>{product.categoryName}</div>
         </div>
         <div className="input-group input-group-sm mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-sm">Picture</span>
+          <span >Picture:</span>
           {
             product.imgs.map( (img, index) => {
               return <img key={index} src={`http://localhost:4000/upload/`+img} alt="img"/>
@@ -73,8 +74,10 @@ const Details = (props) => {
           }
         </div>
         <div className="input-group input-group-sm mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-sm">Details</span>
-          <span dangerouslySetInnerHTML={{__html: product.detail}}></span>
+          <span className='title'>Details:</span>
+          <div className='content'>
+          <div  dangerouslySetInnerHTML={{__html: product.detail}}></div>
+          </div>
         </div>
       </div>
     </div>

@@ -27,10 +27,8 @@ const Login = (props) => {
     setFormData({ username: '', password:''} )
     const reqResult = await reqlogin(username, password)
     if(reqResult.status === 1) props.globalAlert({show: true, msg:reqResult.msg})
-    // console.log(reqResult)
     props.createSaveUserInfo(reqResult.data)
     navigate('/admin/home', {replace: true})
-    // console.log(reqResult.data)
   }
 
   const handelFormInputChange = (type) => (event) =>{
@@ -67,7 +65,7 @@ const Login = (props) => {
                 <span className="input-group-text" id="basic-addon1">
                   <img src={LockIcon} alt="Bootstrap" width="32" height="32"/>
                 </span>
-                <input type="text" className="form-control" placeholder="Password" aria-label="Password"
+                <input type="password" className="form-control" placeholder="Password" aria-label="Password"
                        aria-describedby="basic-addon1" onChange={handelFormInputChange('password')} value={formData.password}/>
               </div>
               <button type="submit" className="btn btn-primary submitButton">Submit</button>

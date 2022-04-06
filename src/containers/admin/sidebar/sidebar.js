@@ -2,9 +2,10 @@ import {Link, useLocation} from 'react-router-dom'
 import  './sidebar.scss'
 import sidebarMenu from '../../../config/sidebarMenu';
 import {useState} from 'react';
+import {connect} from 'react-redux';
 
 let menuState = {}
-const Sidebar = () => {
+const Sidebar = (props) => {
 
   let location = useLocation();
 
@@ -35,29 +36,37 @@ const Sidebar = () => {
 
   const createSidebarMenu = (sidebarMenu) => {
     return sidebarMenu.map((item) => {
-      if(!item.children){
-        return (
-          <Link to={item.path}  key={item.key}>
-            <button className="btn btn-primary" type="button"
-                    onClick={() => {handleMenuClick(item.key)}}>
-              {item.title}
-            </button>
-          </Link>
-        )
-      }else{
-        return (
-          <div key={item.key} >
-            <button className="btn btn-primary" type="button"
-                    onClick={() => {handleMenuClick(item.key)}}>
-              {item.title}
-            </button>
-            <div className={`submenu ${menu[item.key]['style']}`} id={item.key}>
-              { createSidebarMenu(item.children) }
+      if(authSidebarMenu(item)){
+        if(!item.children){
+          return (
+            <Link to={item.path}  key={item.key}>
+              <button className="btn btn-primary" type="button"
+                      onClick={() => {handleMenuClick(item.key)}}>
+                {item.title}
+              </button>
+            </Link>
+          )
+        }else{
+          return (
+            <div key={item.key} >
+              <button className="btn btn-primary" type="button"
+                      onClick={() => {handleMenuClick(item.key)}}>
+                {item.title}
+              </button>
+              <div className={`submenu ${menu[item.key]['style']}`} id={item.key}>
+                { createSidebarMenu(item.children) }
+              </div>
             </div>
-          </div>
-        )
+          )
+        }
       }
     })
+  }
+
+  const authSidebarMenu = (item) => {
+
+    const menus = props.userInfo.user.role.menus
+    return menus.some((menu) => (menu === item.key))
   }
 
   return (
@@ -67,4 +76,9 @@ const Sidebar = () => {
   );
 }
 
-export default Sidebar;
+export default connect(
+  state => ({
+    userInfo: state.userInfo
+  })
+)(Sidebar);
+
