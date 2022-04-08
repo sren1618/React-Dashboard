@@ -90,7 +90,7 @@ const AddUpdate = (props) => {
     else productItem.imgs = product.imgs[0]
     productItem.detail = richTextRef.current.getRichText()
     let result
-    if(actionType === 'add') result = await reqAddProduct(productItem)
+    if(actionType === 'Add') result = await reqAddProduct(productItem)
     else  result = await reqUpdateProduct(productItem)
     if(result.status === 0){
       props.globalAlert({show:true, msg:'Added successfully!'})
@@ -101,13 +101,14 @@ const AddUpdate = (props) => {
   }
 
   return (
+
     <div className="card">
         <div className="card-header">
           <h2>{actionType} Product</h2>
           <button className="btn btn-primary" type="button" onClick={() => {navigate(-1)}}>GO Back</button>
         </div>
         <div className="card-body">
-          <form onSubmit={ (event) => {handleFormSubmit(event)}}>
+          <form onSubmit={handleFormSubmit}>
             <div className=" mb-3">
               <span className="input-group-text" id="inputGroup-sizing-sm" >Title</span>
               <input type="text" name='title' className="form-control" aria-label="Sizing example input" defaultValue={product.name}

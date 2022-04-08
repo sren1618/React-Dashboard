@@ -42,7 +42,8 @@ const Roles = (props) => {
     }
   }
 
-  const handleCheckbox = (event, type) => {
+  const handleCheckbox = (event) => {
+    const type = event.target.name
     setCheckboxMenu({...checkboxMenu, [type]:event.target.checked})
   }
 
@@ -136,23 +137,23 @@ const Roles = (props) => {
             <div className="modal-body">
               <h3>Role Name</h3>
               <div>
-                <input className="form-check-input" type="checkbox" checked={checkboxMenu.home} onChange={(event) => {handleCheckbox(event, 'home')}}/>
+                <input className="form-check-input" type="checkbox" checked={checkboxMenu.home} name='home' onChange={handleCheckbox}/>
                 <label className="form-check-label">HOME</label>
               </div>
               <div>
-                <input className="form-check-input" type="checkbox"  checked={checkboxMenu.products} onChange={(event) => {handleCheckbox(event, 'prod')}}/>
+                <input className="form-check-input" type="checkbox"  checked={checkboxMenu.products} name='prod' onChange={handleCheckbox}/>
                 <label className="form-check-label" >PRODUCTS</label>
               </div>
               <div>
-                <input className="form-check-input" type="checkbox"  checked={checkboxMenu.users} onChange={(event) => {handleCheckbox(event, 'users')}}/>
+                <input className="form-check-input" type="checkbox"  checked={checkboxMenu.users} name='users' onChange={handleCheckbox}/>
                 <label className="form-check-label" >USERS</label>
               </div>
               <div>
-                <input className="form-check-input" type="checkbox" checked={checkboxMenu.roles} onChange={(event) => {handleCheckbox(event, 'roles')}}/>
+                <input className="form-check-input" type="checkbox" checked={checkboxMenu.roles} name='roles' onChange={handleCheckbox}/>
                 <label className="form-check-label" >ROLES</label>
               </div>
               <div>
-                <input className="form-check-input" type="checkbox"  checked={checkboxMenu.charts} onChange={(event) => {handleCheckbox(event, 'charts')}}/>
+                <input className="form-check-input" type="checkbox"  checked={checkboxMenu.charts} name='charts' onChange={handleCheckbox}/>
                 <label className="form-check-label" >CHARTS</label>
               </div>
             </div>

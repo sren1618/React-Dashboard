@@ -9,6 +9,7 @@ const Navigation = (props) => {
   }
   return (
     <>
+      {console.log(props)}
       <nav className="navbar" >
         <div className="container-fluid">
           <h1>XXX Mangement system</h1>
@@ -21,7 +22,7 @@ const Navigation = (props) => {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">Hi {props.userInfo.user.username}</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">Are you sure you want to log out？</div>
             <div className="modal-footer">
