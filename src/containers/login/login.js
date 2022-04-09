@@ -17,7 +17,7 @@ const Login = (props) => {
   const navigate = useNavigate();
   useEffect( () => {
     if(isLogin){
-      navigate('/admin', {replace:true})
+      navigate('/admin/home', {replace:true})
     }
   },[])
 

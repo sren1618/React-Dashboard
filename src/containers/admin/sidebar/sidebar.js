@@ -1,8 +1,11 @@
 import {Link, useLocation} from 'react-router-dom'
 import  './sidebar.scss'
 import sidebarMenu from '../../../config/sidebarMenu';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
+import {ReactComponent as Logo} from './logo.svg';
+import dayjs from 'dayjs';
+
 
 let menuState = {}
 const Sidebar = (props) => {
@@ -64,13 +67,15 @@ const Sidebar = (props) => {
   }
 
   const authSidebarMenu = (item) => {
-
     const menus = props.userInfo.user.role.menus
     return menus.some((menu) => (menu === item.key))
   }
 
   return (
     <div className='sidebar'>
+      <div className='logo'>
+        <Logo/>
+      </div>
       {createSidebarMenu(sidebarMenu)}
     </div>
   );
