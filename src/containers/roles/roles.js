@@ -22,7 +22,6 @@ const Roles = (props) => {
 
   const fetchRolesList =  async () => {
     let result = await reqRolesList()
-    console.log(result.data)
     setRolesList(result.data)
   }
 

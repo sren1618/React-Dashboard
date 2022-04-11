@@ -60,7 +60,6 @@ const Products = (props) => {
   const handleSearchClicked = async (event) => {
     event.preventDefault()
     const {searchType, searchContent} = tableHeader
-    console.log(tableHeader)
     let result
     if (searchType === 'name'){
       result = await reqSearchProds(searchContent, undefined, 1, 5)
@@ -68,7 +67,6 @@ const Products = (props) => {
       result = await reqSearchProds(undefined,searchContent, 1, 5 )
     }
     setProducts(result.data.list)
-
   }
 
   return (

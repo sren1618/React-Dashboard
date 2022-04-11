@@ -28,7 +28,7 @@ const Categories = (props) => {
   },[])
 
   useEffect(  () => {
-    setShowTable({...showTable, data: tableData[0]})
+    if(tableData[0])setShowTable({...showTable, data: tableData[0]})
   },[tableData])
 
 
@@ -43,6 +43,7 @@ const Categories = (props) => {
       data.push(categories.slice(start, pageNumber+start))
       start = start + pageNumber
     }
+    console.log(data)
     setTableDate(data)
   }
 
@@ -140,6 +141,9 @@ const Categories = (props) => {
           </tr>
           </thead>
           <tbody>
+          {
+            console.log(showTable)
+          }
           {showTable['data'].map( (item, index) => {
             return (
               <tr key={item['_id']}>
