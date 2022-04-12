@@ -65,6 +65,7 @@ const AddUpdate = (props) => {
     setUploadedImage ({files:file.name , path: URL.createObjectURL(file), name: ''})
     formData.append("image", file);
     let result = await reqUploadImage(formData)
+    console.log(result)
     if(result.status === 0){
       setUploadedImage({files:file.name , path: URL.createObjectURL(file), name:result.data.name})
     }

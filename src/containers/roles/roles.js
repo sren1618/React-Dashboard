@@ -140,7 +140,7 @@ const Roles = (props) => {
                 <label className="form-check-label">HOME</label>
               </div>
               <div>
-                <input className="form-check-input" type="checkbox"  checked={checkboxMenu.products} name='prod' onChange={handleCheckbox}/>
+                <input className="form-check-input" type="checkbox"  checked={checkboxMenu.prod} name='prod' onChange={handleCheckbox}/>
                 <label className="form-check-label" >PRODUCTS</label>
               </div>
               <div>
@@ -157,7 +157,7 @@ const Roles = (props) => {
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={ () => {setCheckboxMenu({home:false,prod:false,users: false,roles: false,charts: false})}} >Close</button>
               <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={handleSettingRolePermissions}>Submit</button>
             </div>
           </div>

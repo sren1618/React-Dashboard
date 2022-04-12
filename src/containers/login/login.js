@@ -6,7 +6,7 @@ import LockIcon from '../../assets/icons/file-lock2-fill.svg'
 import {useEffect, useState} from 'react';
 import {createSaveUserInfo} from '../../redux/actions/loginAction'
 import {globalAlert} from '../../redux/actions/globalAlertAction'
-import {reqlogin} from '../../api';
+import {reqLogin} from '../../api';
 
 const Login = (props) => {
   const {isLogin} = props.userInfo
@@ -25,7 +25,7 @@ const Login = (props) => {
     const {username, password} = formData
     event.preventDefault()
     setFormData({ username: '', password:''} )
-    const reqResult = await reqlogin(username, password)
+    const reqResult = await reqLogin(username, password)
     if(reqResult.status === 1) props.globalAlert({show: true, msg:reqResult.msg})
     props.createSaveUserInfo(reqResult.data)
     navigate('/admin/home', {replace: true})

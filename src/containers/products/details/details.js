@@ -40,6 +40,8 @@ const Details = (props) => {
       let result = await reqCategories()
       categoryDetail = result.data.find( (category) => category._id === productDetail.categoryId)
     }
+    console.log(productDetail)
+    console.log(categoryDetail)
     setProduct({...productDetail, categoryName:categoryDetail.name})
   }
 
@@ -69,7 +71,7 @@ const Details = (props) => {
           <span >Picture:</span>
           {
             product.imgs.map( (img, index) => {
-              return <img key={index} src={`http://localhost:4000/upload/`+img} alt="img"/>
+              return <img key={index} src={`http://localhost:5001/upload/`+img} alt="img"/>
             })
           }
         </div>

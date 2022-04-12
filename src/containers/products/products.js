@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import {reqProductList, reqSearchProds, reqUpdateProdsStatus} from '../../api'
+import {reqProductList, reqSearchProds, reqUpdateProdsStatus, reqDeleteProduct} from '../../api'
 import {globalAlert} from '../../redux/actions/globalAlertAction';
 import './products.scss'
 import {Link} from 'react-router-dom';
@@ -69,6 +69,13 @@ const Products = (props) => {
     setProducts(result.data.list)
   }
 
+  const handleDeleteProduct = async (productId) => {
+    let result = await reqDeleteProduct(productId)
+    if(result.status === 0) props.globalAlert({show:true, msg:'Delete  Successfully!'})
+    else props.globalAlert({show:true, msg:result.msg})
+    fetchProductsList(1, 5)
+  }
+
   return (
     <div className="product-card">
       <div className="card">
@@ -116,11 +123,16 @@ const Products = (props) => {
                     >{product.status ===1 ? 'Listed': 'Not Listed'}</button></td>
                   <td>
                     <Link to={`/admin/prod/products/details/${product._id}`}>
-                      <button className=' btn' >Details</button>
+                      <button className=' btn btn-primary' >Details</button>
                     </Link>
+                  </td>
+                  <td>
                     <Link to={`/admin/prod/products/add-update/${product._id}`}>
-                      <button className=' btn' >Edit</button>
+                      <button className=' btn btn-primary' >Edit</button>
                     </Link>
+                  </td>
+                  <td>
+                    <button className=' btn btn-primary' onClick={() => {handleDeleteProduct(product._id)}}>Delete</button>
                   </td>
                 </tr>
               )

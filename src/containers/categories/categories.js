@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import React, {useEffect, useState} from 'react';
-import { reqCategories, reqAddCategory, reqUpdateCategory } from '../../api'
+import { reqCategories, reqAddCategory, reqUpdateCategory, reqDeleteCategory } from '../../api'
 import {globalAlert} from '../../redux/actions/globalAlertAction';
 import {createSaveCategories} from '../../redux/actions/categoryAction';
 
@@ -34,17 +34,20 @@ const Categories = (props) => {
 
   const fetchTableData = async (pageNumber) => {
     const result = await reqCategories()
-    props.saveCategories(result)
-    const categories = result.data.reverse()
-    let totalPages = Math.ceil(categories.length / pageNumber)
-    let start = 0
-    const data = []
-    for (let i = 0; i< totalPages;i++ ){
-      data.push(categories.slice(start, pageNumber+start))
-      start = start + pageNumber
+    if(result.status  === 0){
+      props.saveCategories(result)
+      const categories = result.data.reverse()
+      let totalPages = Math.ceil(categories.length / pageNumber)
+      let start = 0
+      const data = []
+      for (let i = 0; i< totalPages;i++ ){
+        data.push(categories.slice(start, pageNumber+start))
+        start = start + pageNumber
+      }
+      setTableDate(data)
+    }else{
+      props.globalAlert({show:true, msg:result.msg})
     }
-    console.log(data)
-    setTableDate(data)
   }
 
   const CreatePagination = () => {
@@ -81,11 +84,12 @@ const Categories = (props) => {
 
   const handleCategoryModal = (id, name) => {
     if (id && name) {
-      setModalData({ type: 'edit',id:id, title: 'Edit Category', placeholder: '', defaultData:name, data: name })
+      setModalData({type: 'edit', id: id, title: 'Edit Category', placeholder: '', defaultData: name, data: name})
+    }else if (id){
+      setModalData({type: 'delete', id: id, title: 'Delete Category', placeholder: '', defaultData: name, data: name})
     }else{
       setModalData({ type: 'add',id:'', title: 'Add a New Category', placeholder: 'new category', defaultData:'', data: '' })
     }
-
   }
   const handleModalInputChange = (e) => {
     const inputValue = e.target.value
@@ -118,6 +122,10 @@ const Categories = (props) => {
         //error
         props.globalAlert({show:true, msg:'handle type error'})
       }
+    }else if (type === 'delete'){
+      let result = await reqDeleteCategory(id)
+      props.globalAlert({show:true, msg:'Delete successfully!'})
+      fetchTableData(5)
     }else{
       //error
       props.globalAlert({show:true, msg:'Cannot be blank or same as previous'})
@@ -141,15 +149,13 @@ const Categories = (props) => {
           </tr>
           </thead>
           <tbody>
-          {
-            console.log(showTable)
-          }
           {showTable['data'].map( (item, index) => {
             return (
               <tr key={item['_id']}>
                 <th scope="row">{index+1}</th>
                 <td>{item.name}</td>
-                <td><button className=' btn' data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={ () => handleCategoryModal(item._id,item.name)}>Edit</button></td>
+                <td><button className=' btn btn-primary' data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={ () => handleCategoryModal(item._id,item.name)}>Edit</button></td>
+                <td><button className=' btn btn-primary' data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={ () => handleCategoryModal(item._id)}>Delete</button></td>
               </tr>
             )
           })}
@@ -173,7 +179,11 @@ const Categories = (props) => {
           <h5 className="modal-title" id="staticBackdropLabel">{modalData.title}</h5>
         </div>
         <div className="modal-body">
-          <input type="text" className="form-control" id="exampleFormControlInput1" value={modalData.data} placeholder={modalData.placeholder} onChange={ (e) => {handleModalInputChange(e)}}/>
+          {
+            modalData.type === 'delete'?
+              <h5>Are you sure to delete the category?</h5>
+              :<input type="text" className="form-control" id="exampleFormControlInput1" value={modalData.data} placeholder={modalData.placeholder} onChange={ (e) => {handleModalInputChange(e)}}/>
+          }
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={handleCloseModal}>Close</button>
