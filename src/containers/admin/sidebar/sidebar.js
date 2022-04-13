@@ -1,10 +1,10 @@
-import {Link, useLocation} from 'react-router-dom'
+import {Link, NavLink, useLocation} from 'react-router-dom'
 import  './sidebar.scss'
 import sidebarMenu from '../../../config/sidebarMenu';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {connect} from 'react-redux';
 import {ReactComponent as Logo} from './logo.svg';
-import dayjs from 'dayjs';
+
 
 
 let menuState = {}
@@ -42,17 +42,19 @@ const Sidebar = (props) => {
       if(authSidebarMenu(item)){
         if(!item.children){
           return (
-            <Link to={item.path}  key={item.key}>
-              <button className="btn btn-primary" type="button"
+            <NavLink to={item.path}  key={item.key}
+                     className={(navData) => (navData.isActive ? 'button_active' : '')}
+             >
+              <button className="btn sidebar_button" type="button"
                       onClick={() => {handleMenuClick(item.key)}}>
                 {item.title}
               </button>
-            </Link>
+            </NavLink>
           )
         }else{
           return (
             <div key={item.key} >
-              <button className="btn btn-primary" type="button"
+              <button className="btn sidebar_button" type="button"
                       onClick={() => {handleMenuClick(item.key)}}>
                 {item.title}
               </button>

@@ -8,7 +8,7 @@ const GlobalAlert = (props) => {
   useEffect( () => {
     const timer = setTimeout(() => {
       props.globalAlert({show: false, msg:""})
-    }, 2000)
+    }, 3000)
     return () => {
       clearTimeout(timer)
     }

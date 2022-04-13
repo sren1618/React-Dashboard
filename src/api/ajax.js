@@ -5,7 +5,7 @@ import {globalAlert} from '../redux/actions/globalAlertAction';
 
 const instance = axios.create(
   {
-    timeout: 1000,
+    timeout: 10000,
     baseURL: BASE_URL
   }
 )

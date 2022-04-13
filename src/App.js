@@ -10,6 +10,8 @@ import AddUpdate from './containers/products/addUpdate/addUpdate';
 import Roles from './containers/roles/roles';
 import Users from './containers/users/users';
 import Home from './components/home/home';
+import SalesCharts from './containers/salesCharts/salesCharts';
+import VisitorsCharts from './containers/visitorsCharts/visitorsCharts';
 
 const App = () => {
   return (
@@ -25,8 +27,8 @@ const App = () => {
           <Route path='prod/products/add-update/:id' element={<AddUpdate/>}/>
           <Route path='user' element={<Users/>}/>
           <Route path='role' element={<Roles/>}/>
-          <Route path='charts/1' element={<Products/>}/>
-          <Route path='charts/2' element={<Products/>}/>
+          <Route path='charts/sales' element={<SalesCharts/>}/>
+          <Route path='charts/visitors' element={<VisitorsCharts/>}/>
         </Route>
         <Route path='*' element={<Navigate to={'/'} />}/>
       </Routes>

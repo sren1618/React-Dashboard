@@ -1,0 +1,45 @@
+
+.sidebar_button{
+  color:white;
+}
+
+.sidebar_button:focus{
+  box-shadow: none;
+}
+
+.button_active{
+  display: block;
+  background-color: #F24A72 !important;
+}
+
+.btn:focus{
+  box-shadow: none;
+}
+
+.btn-primary:active:focus{
+  box-shadow: none;
+}
+
+.btn-content:hover{
+  background-color: #F24A72
+}
+
+.btn:hover{
+  color: white;
+}
+
+.btn-primary{
+  color:white;
+}
+
+.btn-primary:focus {
+  color:white;
+}
+
+.btn-footer:hover{
+  color: #000 !important;
+}
+
+.btn-primary:active{
+  color:white;
+}

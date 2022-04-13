@@ -55,7 +55,7 @@ const Categories = (props) => {
     for(let i = 1; i <= tableData.length; i++){
       arr.push(
         <li className="page-item" key={i}>
-          <button className=' btn' onClick={() => handlePagination(i)}>{i}</button>
+          <button className=' btn btn-footer' onClick={() => handlePagination(i)}>{i}</button>
         </li>)
     }
     return arr
@@ -154,8 +154,8 @@ const Categories = (props) => {
               <tr key={item['_id']}>
                 <th scope="row">{index+1}</th>
                 <td>{item.name}</td>
-                <td><button className=' btn btn-primary' data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={ () => handleCategoryModal(item._id,item.name)}>Edit</button></td>
-                <td><button className=' btn btn-primary' data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={ () => handleCategoryModal(item._id)}>Delete</button></td>
+                <td><button className=' btn btn-content' data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={ () => handleCategoryModal(item._id,item.name)}>Edit</button></td>
+                <td><button className=' btn btn-content' data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={ () => handleCategoryModal(item._id)}>Delete</button></td>
               </tr>
             )
           })}

@@ -36,7 +36,7 @@ const Products = (props) => {
     for(let i = 1; i <= tablePagination.totalPages; i++){
       arr.push(
         <li className="page-item" key={i}>
-          <button className=' btn' onClick={() => handlePagination(i)}>{i}</button>
+          <button className=' btn btn-footer' onClick={() => handlePagination(i)}>{i}</button>
         </li>)
     }
     return arr
@@ -123,16 +123,16 @@ const Products = (props) => {
                     >{product.status ===1 ? 'Listed': 'Not Listed'}</button></td>
                   <td>
                     <Link to={`/admin/prod/products/details/${product._id}`}>
-                      <button className=' btn btn-primary' >Details</button>
+                      <button className=' btn btn-content' >Details</button>
                     </Link>
                   </td>
                   <td>
                     <Link to={`/admin/prod/products/add-update/${product._id}`}>
-                      <button className=' btn btn-primary' >Edit</button>
+                      <button className=' btn btn-content' >Edit</button>
                     </Link>
                   </td>
                   <td>
-                    <button className=' btn btn-primary' onClick={() => {handleDeleteProduct(product._id)}}>Delete</button>
+                    <button className=' btn btn-content' onClick={() => {handleDeleteProduct(product._id)}}>Delete</button>
                   </td>
                 </tr>
               )

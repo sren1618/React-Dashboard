@@ -42,14 +42,14 @@ export default [
     submenu: true,
     children: [
       {
-        title: '2',
+        title: 'Sales',
         key: 'dayReport',
-        path: '/admin/charts/1'
+        path: '/admin/charts/sales'
       },
       {
-        title: '3',
+        title: 'Visitors',
         key: 'yearReport',
-        path: '/admin/charts/2'
+        path: '/admin/charts/visitors'
       }
     ]
   }
