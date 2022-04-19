@@ -141,13 +141,13 @@ const AddUpdate = (props) => {
               <input className="form-control" name='picture' type="file" id="formFile" ref={imgInputRef}
                      onChange={ (event) => {handelUploadImage(event)}}/>
               <img src={uploadedImage.path} alt="" />
-              <button type='button' onClick={handleDeleteUploadedImage}>Delete</button>
+              {/*<button type='button' onClick={handleDeleteUploadedImage}>Delete</button>*/}
             </div>
             <div className="mb-3">
               <span className="input-group-text" id="inputGroup-sizing-sm">details</span>
               <EditorConvertToHTML ref={richTextRef}/>
             </div>
-            <input type="submit"/>
+            <input className="form-control" type="submit" style={{backgroundColor: '#F24A72', cursor:'pointer'}}/>
           </form>
         </div>
       </div>
