@@ -40,8 +40,8 @@ const Details = (props) => {
       let result = await reqCategories()
       categoryDetail = result.data.find( (category) => category._id === productDetail.categoryId)
     }
-    console.log(productDetail)
-    console.log(categoryDetail)
+    // console.log(productDetail)
+    // console.log(categoryDetail)
     setProduct({...productDetail, categoryName:categoryDetail.name})
   }
 
