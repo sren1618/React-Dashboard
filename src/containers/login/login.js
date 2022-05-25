@@ -50,6 +50,11 @@ const Login = (props) => {
         <header className='login-header'>
           <h1>EasyShop Management System</h1>
         </header>
+        <div>
+          <h2>Testing Account</h2>
+          <h2>username: admin</h2>
+          <h2>password: admin</h2>
+        </div>
         <div className="row">
           <div className="col"/>
           <div className=" col-4">
